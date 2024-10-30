@@ -66,7 +66,6 @@ body {
   font-weight: 400;
   letter-spacing: 35px;
   animation: up-to-bottom 1s ease-in;
-  transition: all 0.5s;
 }
 
 .heading-primary-sub {
@@ -83,6 +82,7 @@ body {
   text-transform: uppercase;
   border-radius: 100px;
   transition: all 0.3s;
+  position: relative;
 }
 
 .btn:hover {
@@ -103,59 +103,99 @@ body {
   color: #777;
 }
 
+.btn::after {
+  content: "";
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  border-radius: 100px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: all 0.3s;
+}
+
+.btn-white::after {
+  background-color: #fff;
+}
+
+.btn:hover::after {
+  transform: scaleX(1.3) scaleY(1.6);
+  opacity: 0;
+}
+
+.btn-animated {
+  animation: move-to-up 0.5s 0.75s ease-out;
+  animation-fill-mode: backwards;
+}
+
 @keyframes up-to-bottom {
   0% {
     opacity: 0;
-    transform: translateY(-25vh);
-    filter: drop-shadow(5px -5px 3px #777);
+    transform: translateX(100px);
+    filter: drop-shadow(0px 0px 3px #777);
   }
 
   25% {
     opacity: 0.25;
-    filter: drop-shadow(5px -5px 3px #777);
+    filter: drop-shadow(15px 0px 3px #777);
   }
 
   50% {
     opacity: 0.5;
+    filter: drop-shadow(15px 0px 3px #777);
   }
 
   75% {
     opacity: 0.75;
-    filter: drop-shadow(5px -5px 3px #777);
+    filter: drop-shadow(15px 0px 3px #777);
   }
 
   100% {
     opacity: 1;
-    transform: translateY(0);
-    filter: drop-shadow(5px -5px 3px #777);
+    transform: translateX(0);
+    filter: drop-shadow(0px 0px 3px #777);
   }
 }
 
 @keyframes bottom-to-up {
   0% {
     opacity: 0;
-    transform: translateY(25vh);
-    filter: drop-shadow(-5px 5px 3px #777);
+    transform: translateX(-100px);
+    filter: drop-shadow(0px 0px 3px #777);
   }
 
   25% {
     opacity: 0.25;
-    filter: drop-shadow(-5px 5px 3px #777);
+    filter: drop-shadow(-15px 0px 3px #777);
   }
 
   50% {
     opacity: 0.5;
-    filter: drop-shadow(-5px 5px 3px #777);
+    filter: drop-shadow(-15px 0px 3px #777);
   }
 
   75% {
     opacity: 0.75;
-    filter: drop-shadow(-5px 5px 3px #777);
+    filter: drop-shadow(-15px 0px 3px #777);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+    filter: drop-shadow(0px 0px 3px #777);
+  }
+}
+
+@keyframes move-to-up {
+  0% {
+    opacity: 0;
+    transform: translateY(50px);
   }
 
   100% {
     opacity: 1;
     transform: translateY(0);
-    filter: drop-shadow(-5px 5px 3px #777);
   }
 }
